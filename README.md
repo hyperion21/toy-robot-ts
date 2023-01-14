@@ -37,4 +37,4 @@ Outputs the robot's current location on the tabletop and the direction it is fac
 
 ## How to run
 1. npm i || npm install
-2. npm start
+2. npm run start

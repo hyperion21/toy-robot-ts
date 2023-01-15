@@ -1,9 +1,9 @@
 import * as process from 'process';
-import chalk from 'chalk';
-import Table, { IPosition } from "./table.js";
-import { directions } from "./constants.js";
+import Table from "./table.js";
 
-const invalidMove = chalk.red.bold('Robot will fall' + '\n');
+const invalidMove = 'Robot will fall\n';
+
+export const directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
 
 export interface IRobotOptions {
   x: number;
@@ -11,9 +11,14 @@ export interface IRobotOptions {
   direction: number;
 }
 
+export interface IPosition {
+	x: number;
+	y: number;
+}
+
 export default class Robot {
   public direction: number;
-  private position: IPosition;
+  public position: IPosition;
 
   constructor(options: IRobotOptions) {
     const { x, y, direction } = options;
@@ -44,8 +49,6 @@ export default class Robot {
         break;
       case 3:
         this.position.x === 0 ? process.stdout.write(invalidMove) : --this.position.x;
-        break;
-      default:
         break;
     }
   }

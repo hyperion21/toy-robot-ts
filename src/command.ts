@@ -1,14 +1,13 @@
 import * as process from 'process';
-import Robot from './robot.js';
 import Table from './table.js';
-import { directions } from './constants.js';
+import Robot, { directions } from './robot.js';
 
 
 const isCoordinatesValid = (table: Table, coordinates: string[]): boolean => {
   if (coordinates.length === 3) {
     switch(true) {
-      case (!+coordinates[0] || table.width <= +coordinates[0]):
-      case (!+coordinates[1] || table.height <= +coordinates[1]):
+      case (Number.isNaN(+coordinates[0])) || (0 >= +coordinates[0] && table.width <= +coordinates[0]):
+      case (Number.isNaN(+coordinates[1])) || (0 >= +coordinates[1] && table.height <= +coordinates[1]):
       case (!directions.includes(coordinates[2].toUpperCase())):
         return false;
       default:
@@ -21,7 +20,7 @@ const isCoordinatesValid = (table: Table, coordinates: string[]): boolean => {
 }
 
 export default class Command {
-  private robot: Robot;
+  public robot: Robot;
   private table: Table;
 
   constructor(table: Table) {

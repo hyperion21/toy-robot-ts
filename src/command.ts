@@ -23,8 +23,8 @@ export default class Command {
   public robot: Robot;
   private table: Table;
 
-  constructor(table: Table) {
-    this.table = table;
+  constructor() {
+    this.table = new Table();
     this.robot = new Robot({ x: 0, y: 0, direction: 0});
   };
 

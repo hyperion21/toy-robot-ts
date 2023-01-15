@@ -3,11 +3,9 @@ import readline from 'readline';
 import chalk from 'chalk';
 import boxen from 'boxen';
 
-import Table from './table.js';
 import Command from './command.js';
 
-const table = new Table();
-const command = new Command(table);
+const command = new Command();
 
 const content = 
   chalk.blue.bold('COMMANDS:') + '\n\n' +

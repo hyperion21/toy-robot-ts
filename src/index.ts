@@ -25,7 +25,7 @@ const content =
   chalk.green.bold('- REPORT') + '\n' +
   'Outputs the robot\'s current location on the tabletop and the direction it is facing.\n\n' +
   chalk.green.bold('- EXIT') + '\n' +
-  'To Stop Command.\n\n';
+  'To Stop Command.\n\n' +
   chalk.green.bold('DEFAULT ROBOT is in 0,0 and facing NORTH') + '\n';
   
 const instructions = boxen(content, {padding: 1, borderColor: 'gray', dimBorder: true});

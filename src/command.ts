@@ -67,7 +67,6 @@ export default class Command {
             process.stdout.write(this.robot.toString() + '\n');
             break;
           default:
-            process.stdout.write('Invalid Command\n');
             break;
         }
       }

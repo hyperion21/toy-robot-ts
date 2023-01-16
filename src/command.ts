@@ -25,7 +25,7 @@ export default class Command {
 
   constructor() {
     this.table = new Table();
-    this.robot = new Robot({ x: 0, y: 0, direction: 0});
+    this.robot = new Robot();
   };
 
   public execute(commandStr: string): void {
@@ -41,7 +41,7 @@ export default class Command {
         isPlaceCommand = false;
         const coordinates = command.split(",");
         if (isCoordinatesValid(this.table, coordinates)) {
-          this.robot = new Robot(
+          this.robot.placeRobot(
             { x: +coordinates[0],
               y: +coordinates[1],
               direction: directions.indexOf(coordinates[2].toUpperCase()),

@@ -37,13 +37,13 @@ All commands should provide output indicating whether or not they succeeded
 X and Y are integers that indicate a location on the tabletop.
 DIRECTION is a string indicating which direction the robot should face. It it one of the four cardinal directions: NORTH, EAST, SOUTH or WEST.
 
+Place should be called first
+
 Place should have paired with X,Y,DIRECTION hence it is ignored/skipped.
 X,Y that is greater than 4 and less than 0 is ignored/skipped.
 
 MIN X,Y = 0
 MAX X,Y = 4
-
-By default Robot is place in 0,0,NORTH.
 
 ex: PLACE 1,2,WEST
 ```
@@ -91,4 +91,9 @@ Command: MOVE
 Command: RIGHT
 Command: MOVE
 Command: REPORT
+```
+
+RESULT
+```
+Robot is in 3,4 and facing EAST
 ```

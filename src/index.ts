@@ -12,7 +12,8 @@ const content =
   chalk.green.bold('- PLACE X,Y,DIRECTION') + '\n' + 
   'X and Y are integers that indicate a location on the tabletop\n' +
   'DIRECTION is a string indicating which direction the robot should face. It it one of the four cardinal directions: NORTH, EAST, SOUTH or WEST.\n' + 
-  chalk.red.bold('***X,Y,DIRECTION is required after PLACE, PLACE will be ignored if incomplete***') + '\n\n' +
+  chalk.red.bold('***X,Y,DIRECTION is required after PLACE hence it is ignored***') + '\n' +
+  chalk.red.bold('***PLACE MUST BE TRIGGERED FIRST***') + '\n\n' +
   chalk.green.bold('- MOVE') + '\n' +
   'Instructs the robot to move 1 square in the direction it is facing.\n' +
   chalk.red.bold('***MOVE is ignored if robot will fall***') + '\n\n' +
@@ -23,8 +24,7 @@ const content =
   chalk.green.bold('- REPORT') + '\n' +
   'Outputs the robot\'s current location on the tabletop and the direction it is facing.\n\n' +
   chalk.green.bold('- EXIT') + '\n' +
-  'To Stop Command.\n\n' +
-  chalk.green.bold('DEFAULT ROBOT is in 0,0 and facing NORTH') + '\n';
+  'To Stop Command.\n';
   
 const instructions = boxen(content, {padding: 1, borderColor: 'gray', dimBorder: true});
   process.stdout.write(instructions);

@@ -7,21 +7,17 @@ describe("Command", () => {
     test('should execute command string', () => {
       const command: Command = new Command();
       command.execute('PLACE 2,2,SOUTH MOVE MOVE LEFT MOVE RIGHT REPORT');
-      if (command.robot.position && command.robot.direction) {
-        expect(command.robot.position.x).toBe(3);
-        expect(command.robot.position.y).toBe(0);
-        expect(directions[command.robot.direction]).toBe('SOUTH');
-      }
+      expect(command.robot.position!.x).toBe(3);
+      expect(command.robot.position!.y).toBe(0);
+      expect(directions[command.robot.direction!]).toBe('SOUTH');
     });
 
     test('should try to execute invalid command', () => {
       const command: Command = new Command();
       command.execute('PLACE 0,0,SOUTH WALK');
-      if (command.robot.position && command.robot.direction) {
-        expect(command.robot.position.x).toBe(0);
-        expect(command.robot.position.x).toBe(0);
-        expect(directions[command.robot.direction]).toBe('SOUTH');
-      }
+      expect(command.robot.position!.x).toBe(0);
+      expect(command.robot.position!.x).toBe(0);
+      expect(directions[command.robot.direction!]).toBe('SOUTH');
     });
 
     test('should try to execute place with additional parameters', () => {

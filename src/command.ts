@@ -48,7 +48,7 @@ export default class Command {
             }
           )
         } else {
-          process.stdout.write('Incorrect PLACE Command \n');
+          process.stdout.write(`FAILED: Incorrect PLACE Parameters (PLACE ${command}) \n`);
           return;
         }
       } else {
@@ -66,6 +66,7 @@ export default class Command {
             process.stdout.write(this.robot.toString() + '\n');
             break;
           default:
+            process.stdout.write(`FAILED: Incorrect Command (${command}) \n`);
             break;
         }
       }

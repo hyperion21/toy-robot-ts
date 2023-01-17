@@ -2,13 +2,15 @@ import { describe, expect, test } from '@jest/globals';
 import Robot, { directions } from '../src/robot';
 import Table from '../src/table';
 
+const robotIsNotPlaced = 'FAILED: Robot is not yet placed\n';
+
 describe("Robot", () => {
   describe('Create Robot', () => {
     test('should create robot', () => {
       const robot: Robot = new Robot();
       expect(robot.position).toBeNull;
       expect(robot.direction).toBeNull;
-      expect(robot.toString()).toBe('Robot is not yet placed\n');
+      expect(robot.toString()).toBe(robotIsNotPlaced);
     });
   });
 
@@ -44,7 +46,7 @@ describe("Robot", () => {
     robot.turnLeft();
     expect(robot.position).toBeNull;
     expect(robot.direction).toBeNull;
-    expect(robot.toString()).toBe('Robot is not yet placed\n');
+    expect(robot.toString()).toBe(robotIsNotPlaced);
   });
 
   describe('Robot turn right', () => {
@@ -68,7 +70,7 @@ describe("Robot", () => {
       robot.turnRight();
       expect(robot.position).toBeNull;
       expect(robot.direction).toBeNull;
-      expect(robot.toString()).toBe('Robot is not yet placed\n');
+      expect(robot.toString()).toBe(robotIsNotPlaced);
     });
   });
 
@@ -144,7 +146,7 @@ describe("Robot", () => {
       robot.move(table);
       expect(robot.position).toBeNull;
       expect(robot.direction).toBeNull;
-      expect(robot.toString()).toBe('Robot is not yet placed\n');
+      expect(robot.toString()).toBe(robotIsNotPlaced);
     });
   });
 
@@ -152,7 +154,7 @@ describe("Robot", () => {
     test('should report its current position', () => {
       const robot: Robot = new Robot();
       robot.placeRobot({ x: 3, y:3, direction: 1});
-      expect(robot.toString()).toBe('Robot is in 3,3 and facing EAST');
+      expect(robot.toString()).toBe('SUCCESS: Robot is in 3,3 and facing EAST');
     });
   });
   

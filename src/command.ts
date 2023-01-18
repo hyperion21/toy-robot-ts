@@ -1,23 +1,7 @@
 import * as process from 'process';
 import Table from './table.js';
-import Robot, { directions } from './robot.js';
+import Robot from './robot.js';
 
-
-const isCoordinatesValid = (table: Table, coordinates: string[]): boolean => {
-  if (coordinates.length === 3) {
-    switch(true) {
-      case (Number.isNaN(+coordinates[0])) || (0 >= +coordinates[0] && table.width <= +coordinates[0]):
-      case (Number.isNaN(+coordinates[1])) || (0 >= +coordinates[1] && table.height <= +coordinates[1]):
-      case (!directions.includes(coordinates[2].toUpperCase())):
-        return false;
-      default:
-        break;
-    }
-  } else {
-    return false;
-  }
-  return true;
-}
 
 export default class Command {
   public robot: Robot;
@@ -40,14 +24,8 @@ export default class Command {
       if (isPlaceCommand) {
         isPlaceCommand = false;
         const coordinates = command.split(",");
-        if (isCoordinatesValid(this.table, coordinates)) {
-          this.robot.placeRobot(
-            { x: +coordinates[0],
-              y: +coordinates[1],
-              direction: directions.indexOf(coordinates[2].toUpperCase()),
-            }
-          )
-        } else {
+        const validPlace = this.robot.placeRobot(this.table, coordinates);
+        if (!validPlace) {
           process.stdout.write(`FAILED: Incorrect PLACE Parameters (PLACE ${command}) \n`);
           return;
         }

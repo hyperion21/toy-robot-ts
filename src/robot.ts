@@ -6,12 +6,6 @@ const invalidPlace = 'FAILED: Robot is not yet placed\n';
 
 export const directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
 
-export interface IRobotOptions {
-  x: number;
-  y: number;
-  direction: number;
-}
-
 export interface IPosition {
   x: number;
   y: number;
@@ -26,11 +20,26 @@ export default class Robot {
     this.position = null;
   }
 
-  public placeRobot(options: IRobotOptions): void {
-    const { x, y, direction } = options;
-    this.direction = direction;
-    this.position = { x, y };
-    process.stdout.write(`SUCCESS: Placing robot at ${x},${y} facing ${directions[this.direction]}\n`);
+  public placeRobot(table: Table, placeParameter: string[]): boolean {
+    if (placeParameter.length === 3) {
+      switch(true) {
+        case (Number.isNaN(+placeParameter[0])) || 0 > +placeParameter[0] || table.width <= +placeParameter[0]:
+        case (Number.isNaN(+placeParameter[1])) || 0 > +placeParameter[1] || table.height <= +placeParameter[1]:
+        case (!directions.includes(placeParameter[2].toUpperCase())):
+          return false;
+        default:
+          break;
+      }
+    } else {
+      return false;
+    }
+    this.position = {
+      x: +placeParameter[0],
+      y: +placeParameter[1],
+    }
+    this.direction = directions.indexOf(placeParameter[2].toUpperCase());
+    process.stdout.write(`SUCCESS: Placing robot at ${this.position.x},${this.position.y} facing ${directions[this.direction]}\n`);
+    return true;
   }
 
   public turnLeft(): void {
